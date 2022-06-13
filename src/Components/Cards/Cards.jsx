@@ -11,7 +11,7 @@ const Cards = ({ cards }) => {
               {card.name}
             </dt>
             <dd className="mt-1 text-3xl font-semibold text-gray-900">
-              {card.value}
+              {card.value == 0 ? "~" : card.value}
             </dd>
           </div>
           <div className="w-full border-t border-gray-200"></div>
