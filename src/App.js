@@ -1,8 +1,12 @@
 import "./App.css";
-import Cards from "./Components/Cards";
-import HR from "./Components/HorizontalLine";
-import Coins from "./Components/Coins";
-import Graph from "./Components/Graph";
+// import Cards from "./Components/Cards";
+import { Cards } from "./Components";
+// import HR from "./Components/HorizontalLine";
+import { HR } from "./Components";
+// import Coins from "./Components/Coins";
+import { Coins } from "./Components";
+// import Graph from "./Components/Graph";
+import { Graph } from "./Components";
 const cards = [
   { name: "WTF - USD", value: "1.11" },
   { name: "VUE - RUB", value: "80000.00" },
