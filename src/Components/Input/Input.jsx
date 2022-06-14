@@ -1,4 +1,4 @@
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const Input = ({ value, onChange, type, name, placeholder }) => {
   const hangeChange = (e) => {
@@ -17,14 +17,16 @@ const Input = ({ value, onChange, type, name, placeholder }) => {
     />
   );
 };
-// Input.propTypes = {
-//   type: PropTypes.string,
-//   name: PropTypes.string,
-//   id: PropTypes.string,
-//   value: PropTypes.string,
-//   placeholder: PropTypes.string,
-//   onChange: PropTypes.func,
-// };
+Input.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+};
+Input.defaultProps = {
+  type: "text",
+};
 
-// IMPORTED BUT GIVES TYPO ERROR!
 export default Input;
