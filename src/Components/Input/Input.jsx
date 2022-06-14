@@ -17,7 +17,7 @@ const Input = ({ value, onChange, type, name, placeholder }) => {
     />
   );
 };
-// Input.PropTypes = {
+// Input.propTypes = {
 //   type: PropTypes.string,
 //   name: PropTypes.string,
 //   id: PropTypes.string,
@@ -25,5 +25,6 @@ const Input = ({ value, onChange, type, name, placeholder }) => {
 //   placeholder: PropTypes.string,
 //   onChange: PropTypes.func,
 // };
+
 // IMPORTED BUT GIVES TYPO ERROR!
 export default Input;
