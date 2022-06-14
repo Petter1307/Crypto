@@ -1,18 +1,17 @@
 import { useState } from "react";
-const Cards = ({ cards }) => {
-  const [procCards, setProcCards] = useState(cards);
+const Cards = ({ cards, setCards }) => {
   const [selected, setSelected] = useState();
   const handleClick = (ev) => {
     setSelected(ev.currentTarget.id);
   };
   const handleDelete = (ev) => {
     const elem = ev.currentTarget.parentElement.id;
-    setProcCards(procCards.filter((item) => item.name !== elem));
+    setCards(cards.filter((item) => item.name !== elem));
     console.log(elem);
   };
   return (
     <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-      {procCards.map((card, i) => (
+      {cards.map((card, i) => (
         <div
           key={i}
           id={card.name}

@@ -39,7 +39,7 @@ const Home = () => {
       <div className="container">
         <Ticker onAddTicker={handleAddTicker} />
         <HR />
-        <Cards cards={tickers} />
+        <Cards cards={tickers} setCards={setTickers} />
         <HR />
         <Graph />
       </div>
