@@ -24,7 +24,6 @@ const cards = [
 
 const Home = () => {
   const [tickers, setTickers] = useState(cards);
-  const [activeTicker, setActiveTicker] = useState(tickers[2]);
   const [loading, setloading] = useState(false);
   const handleAddTicker = (ticker) => {
     const NewTicker = {
@@ -62,7 +61,7 @@ const Home = () => {
       <div className="container">
         <Ticker onAddTicker={handleAddTicker} />
         <HR />
-        <Cards cards={tickers} activeName={activeTicker.name} />
+        <Cards cards={tickers} />
         <HR />
         <Graph />
       </div>

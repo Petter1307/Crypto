@@ -1,11 +1,25 @@
-const Cards = ({ cards, activeName }) => {
-  console.log(activeName);
+import { useState } from "react";
+const Cards = ({ cards }) => {
+  const [selected, setSelected] = useState();
+  // const handleClick = (ev) => {
+  //   setSelected(ev.currentTarget.name);
+  // };
+  const handleClick = (ev) => {
+    console.log("Clickedxd");
+    console.log(ev.currentTarget.id);
+    setSelected(ev.currentTarget.name);
+  };
+  //TODO Finish the border purple for selected item. The id is set as card name. The code gets the id, remained: The setting color of border.
   return (
     <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
       {cards.map((card, i) => (
         <div
           key={i}
-          className="bg-white overflow-hidden shadow rounded-lg border-purple-800 border-solid cursor-pointer"
+          id={card.name}
+          className={`bg-white overflow-hidden shadow rounded-lg ${
+            selected === card.id ? "border-purple-800" : ""
+          } border-solid cursor-pointer`}
+          onClick={() => handleClick}
         >
           <div className="px-4 py-5 sm:p-6 text-center">
             <dt className="text-sm font-medium text-gray-500 truncate">
