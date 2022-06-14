@@ -1,15 +1,18 @@
 import { useState } from "react";
 const Cards = ({ cards }) => {
+  const [procCards, setProcCards] = useState(cards);
   const [selected, setSelected] = useState();
-  // const handleClick = (ev) => {
-  //   setSelected(ev.currentTarget.name);
-  // };
   const handleClick = (ev) => {
     setSelected(ev.currentTarget.id);
   };
+  const handleDelete = (ev) => {
+    const elem = ev.currentTarget.parentElement.id;
+    setProcCards(procCards.filter((item) => item.name !== elem));
+    console.log(elem);
+  };
   return (
     <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-      {cards.map((card, i) => (
+      {procCards.map((card, i) => (
         <div
           key={i}
           id={card.name}
@@ -27,7 +30,10 @@ const Cards = ({ cards }) => {
             </dd>
           </div>
           <div className="w-full border-t border-gray-200"></div>
-          <button className="flex items-center justify-center font-medium w-full bg-gray-100 px-4 py-4 sm:px-6 text-md text-gray-500 hover:text-gray-600 hover:bg-gray-200 hover:opacity-20 transition-all focus:outline-none">
+          <button
+            onClick={handleDelete}
+            className="flex items-center justify-center font-medium w-full bg-gray-100 px-4 py-4 sm:px-6 text-md text-gray-500 hover:text-gray-600 hover:bg-gray-200 hover:opacity-20 transition-all focus:outline-none"
+          >
             <svg
               className="h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +55,3 @@ const Cards = ({ cards }) => {
   );
 };
 export default Cards;
-// className={`bg-white overflow-hidden shadow rounded-lg ${
-//   activeName === card.name ? "border-purple-800" : ""
-// } border-solid cursor-pointer`}
-//TODO SELECT CARD PURPLE BORDER
