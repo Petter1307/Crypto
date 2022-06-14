@@ -1,13 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Input } from "../Input";
 
-const mockedAutoCompleteItems = ["BTC", "DOGE", "BCT", "CHD"];
+import { getAllCoins } from "../../services/coinList";
+
+// const mockedAutoCompleteItems = ["BTC", "DOGE", "BCT", "CHD"];
 
 const Ticker = ({ onAddTicker }) => {
+  const [allCoinsList, setAllCoinsList] = useState([]);
+  const [autoCompleteItems, setAutoCompleteItem] = useState([]);
   const [ticker, setTicker] = useState("");
-  const [autoCompleteItems] = useState(mockedAutoCompleteItems);
+  const [errorMessage, setErrorMessage] = useState(null);
+  // const [autoCompleteItems] = useState(mockedAutoCompleteItems);
+  useEffect(() => {
+    getAllCoins().then((coins) => {
+      setAllCoinsList(coins);
+    });
+    return () => {
+      console.log("unmount");
+    };
+  }, []);
 
+  useEffect(() => {
+    if (ticker.length > 0) {
+      const filteredCoins = allCoinsList
+        .filter((coin) => coin.toLowerCase().startsWith(ticker.toLowerCase()))
+        .slice(0, 4);
+      setAutoCompleteItem(filteredCoins);
+    }
+  }, [ticker, allCoinsList]);
   const handleTickerChange = (value) => {
     setTicker(value);
   };
@@ -33,17 +54,23 @@ const Ticker = ({ onAddTicker }) => {
               onChange={handleTickerChange}
             />
           </div>
-          <div className="flex bg-white shadow-md p-1 rounded-md shadow-md flex-wrap">
-            {autoCompleteItems.map((autoCompleteItem, idx) => (
-              <span
-                key={autoCompleteItem + idx}
-                className="inline-flex items-center px-2 m-1 rounded-md text-xs font-medium bg-gray-300 text-gray-800 cursor-pointer"
-              >
-                {autoCompleteItem}
-              </span>
-            ))}
-          </div>
-          <div className="text-sm text-red-600">This ticker already exists</div>
+          {!!autoCompleteItems.length && (
+            <div className="flex bg-white shadow-md p-1 rounded-md shadow-md flex-wrap">
+              {autoCompleteItems.map((autoCompleteItem, idx) => (
+                <span
+                  key={autoCompleteItem + idx}
+                  className="inline-flex items-center px-2 m-1 rounded-md text-xs font-medium bg-gray-300 text-gray-800 cursor-pointer"
+                >
+                  {autoCompleteItem}
+                </span>
+              ))}
+            </div>
+          )}
+          {errorMessage && (
+            <div className="text-sm text-red-600">
+              This ticker already exists
+            </div>
+          )}
         </div>
       </div>
       <button
