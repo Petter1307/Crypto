@@ -1,4 +1,5 @@
-const Cards = ({ cards }) => {
+const Cards = ({ cards, activeName }) => {
+  console.log(activeName);
   return (
     <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
       {cards.map((card, i) => (
@@ -37,3 +38,7 @@ const Cards = ({ cards }) => {
   );
 };
 export default Cards;
+// className={`bg-white overflow-hidden shadow rounded-lg ${
+//   activeName === card.name ? "border-purple-800" : ""
+// } border-solid cursor-pointer`}
+//TODO SELECT CARD PURPLE BORDER
