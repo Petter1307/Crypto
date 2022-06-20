@@ -11,7 +11,7 @@ const Ticker = ({ onAddTicker }) => {
   const [autoCompleteItems, setAutoCompleteItem] = useState([]);
   const [ticker, setTicker] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
-  // const [autoCompleteItems] = useState(mockedAutoCompleteItems);
+
   useEffect(() => {
     getAllCoins().then((coins) => {
       setAllCoinsList(coins);
